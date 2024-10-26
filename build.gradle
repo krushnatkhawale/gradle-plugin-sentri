@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+group = 'com.krushnatkhawale'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}
+
+test {
+}
+
+gradlePlugin {
+    plugins {
+        helloWorld {
+            id = 'com.krushnatkhawale.sentry'
+            implementationClass = 'com.krushnatkhawale.plugins.sentry.SentryPlugin'
+        }
+    }
+}
