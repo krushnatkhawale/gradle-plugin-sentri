@@ -3,6 +3,7 @@ package com.krushnatkhawale.plugins.sentry;
 import com.krushnatkhawale.plugins.sentry.explorer.Info;
 import com.krushnatkhawale.plugins.sentry.explorer.InfoExplorer;
 import com.krushnatkhawale.plugins.sentry.explorer.ProjectExplorer;
+import com.krushnatkhawale.plugins.sentry.report.SentryReport;
 import com.krushnatkhawale.plugins.sentry.services.ReportingService;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.TaskAction;

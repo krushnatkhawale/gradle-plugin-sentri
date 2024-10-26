@@ -1,4 +1,4 @@
-package com.krushnatkhawale.plugins.sentry;
+package com.krushnatkhawale.plugins.sentry.report;
 
 import com.krushnatkhawale.plugins.sentry.explorer.Info;
 

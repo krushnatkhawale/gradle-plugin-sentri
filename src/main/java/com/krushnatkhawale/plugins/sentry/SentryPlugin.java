@@ -14,7 +14,7 @@ public class SentryPlugin implements Plugin<Project> {
 
         Task buildTask = project.getTasks().findByName("build");
 
-        buildTask.finalizedBy(sentryTask);
+        buildTask.dependsOn(sentryTask);
 
     }
 }
