@@ -1,5 +1,5 @@
 package com.krushnatkhawale.plugins.sentry;
 
-import org.gradle.api.reporting.Report;
+import com.krushnatkhawale.plugins.sentry.explorer.Info;
 
-public record SentryReport (String applicationName){}
+public record SentryReport (Info info){}
