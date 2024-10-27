@@ -22,4 +22,9 @@ public class ProjectInfo implements Info {
     public String getGroup() {
         return group;
     }
+
+    @Override
+    public void addInfo(String name, Info info) {
+
+    }
 }
