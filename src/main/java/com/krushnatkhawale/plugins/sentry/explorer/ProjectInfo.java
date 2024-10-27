@@ -1,6 +1,9 @@
 package com.krushnatkhawale.plugins.sentry.explorer;
 
 public class ProjectInfo implements Info {
+
+    private final String infoType = "projectInfo";
+
     private final String name;
     private final String group;
     private final String version;
@@ -21,5 +24,14 @@ public class ProjectInfo implements Info {
 
     public String getGroup() {
         return group;
+    }
+
+    public String getInfoType() {
+        return infoType;
+    }
+
+    @Override
+    public void addInfo(String name, Info info) {
+
     }
 }

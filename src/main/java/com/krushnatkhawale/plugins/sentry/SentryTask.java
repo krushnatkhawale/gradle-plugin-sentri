@@ -1,5 +1,6 @@
 package com.krushnatkhawale.plugins.sentry;
 
+import com.krushnatkhawale.plugins.sentry.explorer.DependenciesExplorer;
 import com.krushnatkhawale.plugins.sentry.explorer.Info;
 import com.krushnatkhawale.plugins.sentry.explorer.InfoExplorer;
 import com.krushnatkhawale.plugins.sentry.explorer.ProjectExplorer;
@@ -14,17 +15,17 @@ public class SentryTask extends DefaultTask {
 
     private final ReportingService reportingService = new ReportingService();
 
-    private final List<InfoExplorer> explorers = List.of(new ProjectExplorer());
+    private final List<InfoExplorer> explorers = List.of(new ProjectExplorer(), new DependenciesExplorer());
 
     @TaskAction
     public void sentryAction(){
 
-        Info info = null;
+        SentryReport sentryReport = new SentryReport();
         for (InfoExplorer explorer : explorers){
-            info = explorer.explorer(getProject(), info);
+            Info exploredInfo = explorer.explore(getProject());
+            sentryReport.addInfo(exploredInfo);
         }
 
-        SentryReport sentryReport = new SentryReport(info);
-        reportingService.printReport(sentryReport);
+        reportingService.logAndWriteToFile(sentryReport);
     }
 }

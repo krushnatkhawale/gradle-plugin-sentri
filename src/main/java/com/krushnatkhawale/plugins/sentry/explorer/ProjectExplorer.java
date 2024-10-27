@@ -5,7 +5,7 @@ import org.gradle.api.Project;
 public class ProjectExplorer implements InfoExplorer {
 
     @Override
-    public Info explorer(Project project, Info info) {
+    public Info explore(Project project) {
 
         return new ProjectInfo(project.getName(), project.getGroup().toString(), project.getVersion().toString());
     }
