@@ -4,5 +4,5 @@ import org.gradle.api.Project;
 
 public interface InfoExplorer {
 
-    void explore(Project project, Info info);
+    Info explore(Project project);
 }
