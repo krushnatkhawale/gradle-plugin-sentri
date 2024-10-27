@@ -20,13 +20,12 @@ public class SentryTask extends DefaultTask {
     @TaskAction
     public void sentryAction(){
 
-        Info info = new MasterInfo();
+        SentryReport sentryReport = new SentryReport();
         for (InfoExplorer explorer : explorers){
-            explorer.explore(getProject(), info);
+            Info exploredInfo = explorer.explore(getProject());
+            sentryReport.addInfo(exploredInfo);
         }
 
-        SentryReport sentryReport = new SentryReport(info);
-        reportingService.printReport(sentryReport);
-        reportingService.logReport(sentryReport);
+        reportingService.logAndWriteToFile(sentryReport);
     }
 }

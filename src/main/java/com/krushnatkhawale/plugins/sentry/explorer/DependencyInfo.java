@@ -1,6 +1,8 @@
 package com.krushnatkhawale.plugins.sentry.explorer;
 
 public class DependencyInfo implements Info {
+
+    private String infoType = "dependencyInfo";
     private final String someDependency;
 
     public DependencyInfo(String someDependency) {
@@ -9,6 +11,10 @@ public class DependencyInfo implements Info {
 
     public String getSomeDependency() {
         return someDependency;
+    }
+
+    public String getInfoType() {
+        return infoType;
     }
 
     @Override
