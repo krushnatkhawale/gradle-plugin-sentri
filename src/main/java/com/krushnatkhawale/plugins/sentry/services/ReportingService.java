@@ -25,18 +25,24 @@ public class ReportingService {
 
     public void writeReportToFile(SentryReport sentryReport)  {
         String s = transformToJson(sentryReport);
-        String fileName = "a-file";
+        Path reportFilePath = createEmptyReportFile();
+
+        try {
+            Files.writeString(reportFilePath, s, StandardOpenOption.WRITE);
+            System.out.println("\n  SentryReport could be found at: " + reportFilePath.getFileName().toAbsolutePath());
+        } catch (Exception e) {
+            System.out.println("Couldn't write SentryReport to file '" + reportFilePath + "', error was: " + e);
+        }
+    }
+
+    private Path createEmptyReportFile() {
+        String fileName = "Sentry-Report-" + System.currentTimeMillis() + ".json";
         File file = new File(fileName);
         try {
             file.createNewFile();
+            return file.toPath();
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-        try {
-            Files.writeString(Paths.get(fileName), s, StandardOpenOption.WRITE);
-            System.out.println("SentryReport could be found at: " + fileName);
-        } catch (Exception e) {
-            System.out.println("Couldn't write SentryReport to file '" + fileName + "', error was: " + e);
         }
     }
 
