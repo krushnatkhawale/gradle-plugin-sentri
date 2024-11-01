@@ -12,7 +12,7 @@ public class SentryHttpService {
 
     public void post(SentryReport sentryReport) {
 
-        String url = "http://localhost:8080/sentryReport";
+        String url = "http://localhost:8080/sentryReports";
 
         try {
         HttpRequest sentryReportPostRequest = HttpRequest.newBuilder()
