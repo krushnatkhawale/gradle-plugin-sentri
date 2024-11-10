@@ -5,10 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.krushnatkhawale.plugins.sentry.explorer.ProjectInfo;
 import com.krushnatkhawale.plugins.sentry.report.SentryReport;
-import groovy.transform.Undefined;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.*;
 
@@ -23,15 +21,15 @@ public class ReportingService {
         System.out.println("  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 
-    public void writeReportToFile(SentryReport sentryReport)  {
+    public String writeReportToFile(SentryReport sentryReport)  {
         String s = transformToJson(sentryReport);
         Path reportFilePath = createEmptyReportFile();
 
         try {
             Files.writeString(reportFilePath, s, StandardOpenOption.WRITE);
-            System.out.println("\n  SentryReport could be found at: " + reportFilePath.getFileName().toAbsolutePath());
+            return reportFilePath.getFileName().toAbsolutePath().toString();
         } catch (Exception e) {
-            System.out.println("Couldn't write SentryReport to file '" + reportFilePath + "', error was: " + e);
+            return "Couldn't write SentryReport to file '" + reportFilePath + "', error was: " + e;
         }
     }
 
@@ -57,8 +55,8 @@ public class ReportingService {
         }
     }
 
-    public void logAndWriteToFile(SentryReport sentryReport) {
+    public String logAndWriteToFile(SentryReport sentryReport) {
         logReport(sentryReport);
-        writeReportToFile(sentryReport);
+        return writeReportToFile(sentryReport);
     }
 }
