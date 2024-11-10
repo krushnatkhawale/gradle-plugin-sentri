@@ -10,7 +10,6 @@ import com.krushnatkhawale.plugins.sentry.services.SentryHttpService;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.TaskAction;
 
-import java.net.http.HttpClient;
 import java.util.List;
 
 public class SentryTask extends DefaultTask {
@@ -29,7 +28,7 @@ public class SentryTask extends DefaultTask {
             sentryReport.addInfo(exploredInfo);
         }
 
-        reportingService.logAndWriteToFile(sentryReport);
-        sentryHttpService.post(sentryReport);
+        String reportFilePath = reportingService.logAndWriteToFile(sentryReport);
+        sentryHttpService.post(sentryReport, reportFilePath);
     }
 }
