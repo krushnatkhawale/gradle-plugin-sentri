@@ -1,9 +1,6 @@
 package com.krushnatkhawale.plugins.sentry;
 
-import com.krushnatkhawale.plugins.sentry.explorer.DependenciesExplorer;
-import com.krushnatkhawale.plugins.sentry.explorer.Info;
-import com.krushnatkhawale.plugins.sentry.explorer.InfoExplorer;
-import com.krushnatkhawale.plugins.sentry.explorer.ProjectExplorer;
+import com.krushnatkhawale.plugins.sentry.explorer.*;
 import com.krushnatkhawale.plugins.sentry.report.SentryReport;
 import com.krushnatkhawale.plugins.sentry.services.ReportingService;
 import com.krushnatkhawale.plugins.sentry.services.SentryHttpService;
@@ -17,7 +14,7 @@ public class SentryTask extends DefaultTask {
     private final ReportingService reportingService = new ReportingService();
     private final SentryHttpService sentryHttpService = new SentryHttpService();
 
-    private final List<InfoExplorer> explorers = List.of(new ProjectExplorer(), new DependenciesExplorer());
+    private final List<InfoExplorer> explorers = List.of(new ProjectExplorer(), new JavaVersionExplorer(), new DependenciesExplorer());
 
     @TaskAction
     public void sentryAction(){
